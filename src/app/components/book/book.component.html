@@ -1,0 +1,13 @@
+<div class="book">
+    <div class="cover">
+        <img [src]="book['cover'] !== undefined ? book['cover'] : defaultImage" alt="book cover"/>
+    </div>
+    <div class="text">
+        <div class="title">
+            <h3>{{book['title']}}</h3>
+        </div>
+        <div class="description">
+            <p>{{shortDescription}}</p>
+        </div>
+    </div>
+</div>

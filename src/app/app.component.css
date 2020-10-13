@@ -1,0 +1,111 @@
+button {
+    background-color: #00DEB6;
+    color: #262637;
+    border: none;
+    font-weight: bold;
+}
+.wrapper {
+    position: absolute;
+    top: 30%;
+    width: 80%;
+    margin: 0 10%;
+    z-index: 2;
+}
+.search-panel {
+    position: relative;
+    padding: 1rem 0;
+    border-radius: 0.1rem;
+    background-color: #262637;
+    color: white;
+}
+h1 {
+    font-size: 1rem;
+    height: 1rem;
+    line-height: 1rem;
+    margin: 0 0 0.5rem 0;
+    text-align: center;
+    color: #00DEB6;
+    letter-spacing: 0.1rem;
+}
+.logo {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 2rem;
+    margin: 0;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    z-index: 3;
+}
+h2 {
+    height: 2rem;
+    line-height: 2rem;
+    font-size: 0.4rem;
+    padding: 0.1rem;
+    margin: 0 0.5rem 0 0;
+}
+.logo-google-books {
+    max-height: 2rem;
+    line-height: 2rem;
+    margin-right: 1rem;
+}
+.logo-google-books img {
+    height: 1rem;
+    width: auto;
+}
+label{
+    display: block;
+    font-size: 0.6rem;
+    height: 0.8rem;
+    line-height: 0.6rem;
+    width: 100%;
+    padding: 0;
+    margin: 0 0.1rem 0.3rem;
+    text-align: center;
+}
+.input-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 80%;
+    margin: 0.5rem auto;
+    
+}
+.input-field input {
+    display: block;
+    width: 70%;
+    border: none;
+    height: 0.8rem;
+    border-radius: 0.1rem;
+    font-size: 0.4rem;
+
+}
+.input-field input::placeholder {
+    color: #757575;
+    padding-left: 0.3rem;
+}
+.input-field button {
+    height: 0.8rem;
+    border-radius: 0.1rem;
+    font-size: 0.4rem;
+    padding: 0.2rem 0.6rem;
+}
+.error-message {
+    position: absolute;
+    color: red;
+    font-size: 0.5rem;
+    bottom: 0.5rem;
+    left: 5rem;
+}
+.book-list {
+    background-color: white;
+    padding: 2rem 0;
+  }
+  .hits {
+    font-size: 0.4rem;
+    padding: 0 0.5rem;
+    font-size: 0.4rem;
+  }
+
