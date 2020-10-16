@@ -1,50 +1,65 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-// importing API Key
-import {environment} from '../../environments/environments';
-
-import { map } from 'rxjs/operators';
-
-export class Book {
-  constructor(
-    public title: string,
-    public description: string,
-    public cover: string = '',
-  ){}
-}
+import { HttpClient, HttpParams } from '@angular/common/http';
+// imports API Key
+import { environment } from '../../environments/environments';
+// interfaces
+import { BookItems } from './../interfaces/bookItems';
+import { UserTerms } from './../interfaces/userTerms';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookDataService {
-  // api key and api key query
+  // -----------------------------------------API KEY-----------------------------------------
   private API_KEY: string = environment.API_KEY;
-  private apiKeyQuery = `&key=${this.API_KEY}`;
-  // google book volumes prart of url
-  private apiPrefix = 'https://www.googleapis.com/books/v1/volumes?';
-  // ---------------PARAMETERS-----------------------------------------
-  private partialResponse = '&fields=items/volumeInfo(title,description,imageLinks/thumbnail)';
-  private onlyBooks = '&printType=books';
-  private startIndex = '&startIndex=0';
-  private maxResults = '&maxResults=10';
-
+  // ---------------------------------------PARAMETERS-----------------------------------------
+  private FIELDS = 'totalItems,items/volumeInfo(title,description,imageLinks/thumbnail)';
+  private PRINT_TYPE = 'books';
+  // ------------------------------------------------------------------------------------------
+  // Default object to FILL EMPTY key&values in response object form api
+  public defaultObject: BookItems = {
+    volumeInfo: {
+      title: '...',
+      description: '...',
+      imageLinks: {
+        thumbnail: null
+      }
+    }
+  };
   constructor(
     private http: HttpClient
   ) {}
-  searchBooks(term): Observable<Book[]> {
-    const apiURL = `${this.apiPrefix}q=${term}${this.partialResponse}${this.startIndex}${this.maxResults}${this.onlyBooks}${this.apiKeyQuery}`;
-    console.log(apiURL);
-    return this.http.get(apiURL).pipe(
-        map(res => {
-          return res['items'].map(item => {
-            return new Book(
-                item.volumeInfo.title,
-                item.volumeInfo.description,
-                item.volumeInfo.imageLinks.thumbnail,
-            );
-          });
-        })
-    );
+  // --------------------------------- METHODS -----------------------------------------------
+  // method biuld a query accoridng to user inputs
+  buildQuery(userTerms: UserTerms): string {
+    const queryParams = [
+      {query: userTerms.title},
+      {query: userTerms.author}
+    ];
+    const finalQuery: string = queryParams
+      .filter(query => query.query !== null)
+      .map(query => `+intitle:"${encodeURI(query.query as string)}"`)
+      .reduce((queryAccumulator, queryCurrent) => queryAccumulator + queryCurrent);
+    return `q=${finalQuery}`;
+  }
+  // methods build default and donditional params for url
+  buildParams(userTerms: UserTerms, pageParams: {[key: string]: number}): HttpParams {
+    let params = new HttpParams();
+    params = params.set('printType', this.PRINT_TYPE);
+    params = params.set('startIndex', pageParams.startIndex.toString());
+    params = params.set('maxResults', pageParams.maxResults.toString());
+    params = params.set('fields', this.FIELDS);
+    if (userTerms.language && typeof(userTerms.language) === 'string') {
+      params = params.set('langRestrict', userTerms.language.toLowerCase());
+    }
+    params = params.set('key', this.API_KEY);
+    return params;
+  }
+  // core method for API call
+  getBookData(userTerms: UserTerms, pageParams: {[key: string]: number}): Promise<any> {
+    const query = this.buildQuery(userTerms);
+    const params = this.buildParams(userTerms, pageParams);
+    const apiURL = `https://www.googleapis.com/books/v1/volumes?${query}&${params}`;
+    return this.http.get(apiURL).toPromise().then(data => data);
   }
 }

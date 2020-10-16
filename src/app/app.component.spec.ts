@@ -1,31 +1,46 @@
-import { TestBed } from '@angular/core/testing';
+import { Component, DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
+import { BookDataService } from './services/book-data.service';
+
 describe('AppComponent', () => {
-  beforeEach(async () => {
+
+    let component: AppComponent;
+    let fixture: ComponentFixture<AppComponent>;
+    let de: DebugElement;
+
+    let service: BookDataService;
+    let spy: jasmine.Spy;
+
+    beforeEach(async () => {
+
     await TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  });
+        declarations: [
+            AppComponent
+        ],
+        providers: [ { provide: BookDataService }]
+    })
+    .compileComponents();
+    });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(AppComponent);
+        component = fixture.componentInstance;
+        de = fixture.debugElement;
 
-  it(`should have as title 'google-book-search'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('google-book-search');
-  });
+        service = de.injector.get(BookDataService);
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('google-book-search app is running!');
-  });
+        spy = spyOn(service, 'getBookData');
+
+        fixture.detectChanges();
+    });
+
+    it('should create the app', () => {
+    expect(component).toBeTruthy();
+    });
+
+    it(`should be falsy`, () => {
+    expect(component.showAdvancedSearch).toBeFalse();
+    });
 });

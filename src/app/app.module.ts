@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule, FormControl, FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BookComponent } from './components/book/book.component';
-
+import { MaterialModule } from './modules/material.module';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -18,6 +19,9 @@ import { BookComponent } from './components/book/book.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MaterialModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

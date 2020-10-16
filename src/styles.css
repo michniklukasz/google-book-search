@@ -1,21 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
 * {
     box-sizing: border-box;
-  }
-  html, body {
+}
+body {
+    font-family: Roboto, Arial, sans-serif;
     margin: 0;
     padding: 0;
+    font-size: calc(0.5em + 1vw);
     width: 100vw;
     height: 100vh;
-    font-size: calc(1em + 1vw);
-    font-family: 'Alegreya', serif;
-    /* Support for all WebKit browsers. */
-    -webkit-font-smoothing: antialiased;
-    /* Support for Firefox. */
-    -moz-osx-font-smoothing: grayscale;
-    /* Support for Safari and Chrome. */
-    text-rendering: optimizeLegibility;
-    /* Support for IE. */
-    font-feature-settings: 'liga';
-    background-image: url("./assets/library.jpg");
+    overflow-x: hidden;
   }

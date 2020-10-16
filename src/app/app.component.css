@@ -1,111 +1,118 @@
-button {
-    background-color: #00DEB6;
-    color: #262637;
-    border: none;
-    font-weight: bold;
-}
-.wrapper {
-    position: absolute;
-    top: 30%;
-    width: 80%;
-    margin: 0 10%;
-    z-index: 2;
-}
-.search-panel {
-    position: relative;
-    padding: 1rem 0;
-    border-radius: 0.1rem;
-    background-color: #262637;
-    color: white;
-}
-h1 {
-    font-size: 1rem;
-    height: 1rem;
-    line-height: 1rem;
-    margin: 0 0 0.5rem 0;
-    text-align: center;
-    color: #00DEB6;
-    letter-spacing: 0.1rem;
-}
+/* ---------------------------- LOGO NAV-------------------------------- */
 .logo {
-    position: fixed;
+    position: absolute;
     top: 0;
-    width: 100%;
-    height: 2rem;
+    width: 100vw;
+    height: 4rem;
     margin: 0;
     background-color: white;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+    -webkit-box-shadow:0px 5px 5px #424242;
+    -moz-box-shadow:0px 5px 5px #424242;
+    box-shadow:0px 3px 5px -1px rgba(0,0,0,.2);
+    background-color: #FAFAFA;
     z-index: 3;
 }
 h2 {
-    height: 2rem;
-    line-height: 2rem;
-    font-size: 0.4rem;
-    padding: 0.1rem;
-    margin: 0 0.5rem 0 0;
+    height: 4rem;
+    line-height: 4rem;
+    font-size: 0.8rem;
+    margin: 0 1rem 0 0;
+    float: right;
 }
 .logo-google-books {
-    max-height: 2rem;
-    line-height: 2rem;
-    margin-right: 1rem;
+    max-height: 3rem;
+    line-height: 3rem;
+    margin-right: 2rem;
+    float: right;
 }
 .logo-google-books img {
-    height: 1rem;
+    height: 4rem;
     width: auto;
+    padding: 0.5rem;
 }
-label{
-    display: block;
+/* ------------------LOADER----------------- */
+mat-progress-bar {
+    position: fixed;
+    top: 4rem;
+    z-index: 4;
+}
+/* ------------------HEADER----------------- */
+.header h1 {
+    font-size: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    margin: .5rem .5rem 1rem .5rem;
+    text-align: center; 
+}
+/* -------------------FORM CONTAINER---------------- */
+.container {
+    padding: 30px;
+    width: 70%;
+    min-width: 600px;
+    margin: 6rem auto 2rem;
+    border-radius: 1rem;
+    border-color: #3700B3;
+}
+.container form {
+    height: auto;
+}
+.container p {
     font-size: 0.6rem;
-    height: 0.8rem;
-    line-height: 0.6rem;
-    width: 100%;
-    padding: 0;
-    margin: 0 0.1rem 0.3rem;
+    height: auto;
+    max-height: 80px;
+    margin: 0;
+    padding: 0 auto;
     text-align: center;
 }
-.input-field {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 80%;
-    margin: 0.5rem auto;
-    
-}
-.input-field input {
-    display: block;
+mat-form-field {
     width: 70%;
-    border: none;
-    height: 0.8rem;
-    border-radius: 0.1rem;
-    font-size: 0.4rem;
-
 }
-.input-field input::placeholder {
-    color: #757575;
-    padding-left: 0.3rem;
+mat-form-field input {
+    width: 100%;
 }
-.input-field button {
-    height: 0.8rem;
-    border-radius: 0.1rem;
-    font-size: 0.4rem;
-    padding: 0.2rem 0.6rem;
+.year-selection {
+    width: 20%;
 }
-.error-message {
-    position: absolute;
-    color: red;
-    font-size: 0.5rem;
-    bottom: 0.5rem;
-    left: 5rem;
+/* -------------------form buttons---------------- */
+.advanced-search-btn {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
 }
+.advanced-search-btn button {
+    height: 1rem;
+    line-height: 1rem;
+    font-size: 0.6rem;
+}
+.buttons {
+    display: flex;
+    justify-content: space-evenly;
+}
+.scroll-top {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    z-index: 5;
+    padding: 0.5rem;
+    background-color: #3F51B5;
+    color: white;
+}
+/* --------------------list of books-------------------- */
 .book-list {
-    background-color: white;
-    padding: 2rem 0;
-  }
-  .hits {
-    font-size: 0.4rem;
-    padding: 0 0.5rem;
-    font-size: 0.4rem;
-  }
-
+    width: 70%;
+    min-width: 600px;
+    padding: 1rem;
+    margin: 1rem auto;
+    border-radius: 1rem;
+}
+.book-list span {
+    display: block;
+    font-size: 0.6rem;
+    width: 100%;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    margin-bottom: 0.6rem;
+    text-align: right;
+}

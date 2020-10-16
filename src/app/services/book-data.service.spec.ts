@@ -6,7 +6,9 @@ describe('BookDataService', () => {
   let service: BookDataService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      declarations: [ BookDataService ]
+    });
     service = TestBed.inject(BookDataService);
   });
 
