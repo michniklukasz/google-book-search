@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 // imports API Key
-import { environment } from '../../environments/environments';
+import { environment } from '../../environments/environment';
 // interfaces
 import { BookItems } from './../interfaces/bookItems';
 import { UserTerms } from './../interfaces/userTerms';
